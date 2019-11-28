@@ -8,6 +8,7 @@ abstract class Player {
 
     Player() {
         xp = 0;
+        level = 0;
     }
 
     public void setType(PlayerType type) {
