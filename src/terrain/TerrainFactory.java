@@ -1,6 +1,7 @@
 package terrain;
 
 public class TerrainFactory {
+    /**/
     public Terrain getTerrainType(TerrainType terrainType) {
         if (terrainType == null) {
             return null;
@@ -17,5 +18,6 @@ public class TerrainFactory {
         if (terrainType.equals(TerrainType.land)) {
             return new Land();
         }
+        return null;
     }
 }

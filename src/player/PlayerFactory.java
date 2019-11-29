@@ -1,6 +1,7 @@
 package player;
 
 public class PlayerFactory {
+    /**/
     public Player getPlayerType(PlayerType playerType) {
         if (playerType == null) {
             return null;
@@ -17,5 +18,6 @@ public class PlayerFactory {
         if (playerType.equals(PlayerType.rogue)) {
             return new Rogue();
         }
+        return null;
     }
 }
