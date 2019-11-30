@@ -14,7 +14,7 @@ public class Backstab extends Ability {
         setAbilityType(AbilityType.backstab);
         setBaseDamage(RogueConstants.BACKSTAB_STARTING_DAMAGE);
         critical = 1.0f;
-        if (getGameMap().get(player.getxCoordinate()).
+        if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.woods)) {
             setLandModifier(LandMultipliers.WOODS_MULTIPLIER);
             Rogue dummy = (Rogue) player;

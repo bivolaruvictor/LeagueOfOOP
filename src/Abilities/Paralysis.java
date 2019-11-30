@@ -14,7 +14,7 @@ public class Paralysis extends Ability {
         setBlockMovement(RogueConstants.PARALYSIS_EFFECT_ALL_TERRAIN);
         setAbilityType(AbilityType.paralysis);
         setBaseDamage(RogueConstants.PARALYSIS_STARTING_DAMAGE);
-        if (getGameMap().get(player.getxCoordinate()).
+        if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.woods)) {
             setLandModifier(LandMultipliers.WOODS_MULTIPLIER);
             setBlockMovement(RogueConstants.PARALYSIS_EFFECT_WOODS);

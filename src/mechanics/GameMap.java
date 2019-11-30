@@ -28,6 +28,10 @@ public class GameMap {
         return map;
     }
 
+    public void addToMap(int row, Terrain column) {
+        getMap().get(row).add(column);
+    }
+
     /**/
     public int getNumRows() {
         return numRows;
@@ -39,8 +43,12 @@ public class GameMap {
     }
 
     public static GameMap getInstance() {
+        return singleInstance;
+    }
+
+    public static GameMap getInstance(int numRows, int numColumns) {
         if (singleInstance == null) {
-            singleInstance = new GameMap();
+            singleInstance = new GameMap(numRows, numColumns);
         }
         return singleInstance;
     }

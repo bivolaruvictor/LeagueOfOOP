@@ -1,5 +1,7 @@
 package player;
 
+import abilities.Ability;
+import abilities.Visitor;
 import constants.KnightConstants;
 import constants.LandMultipliers;
 import constants.RogueConstants;
@@ -26,5 +28,9 @@ public class Rogue extends Player {
     public int getMaxHp() {
         return RogueConstants.ROGUE_STARTING_HP
                 + RogueConstants.ROGUE_HP_PER_LEVEL * getLevel();
+    }
+
+    public void accept(Visitor ability) {
+        ability.interactWith(this);
     }
 }

@@ -15,7 +15,7 @@ public class Ignite extends Ability {
         super(player);
         setAbilityType(AbilityType.ignite);
         setBaseDamage(PyromancerConstants.IGNITE_STARTING_DAMAGE);
-        if (getGameMap().get(player.getxCoordinate()).
+        if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.volcanic)) {
             setLandModifier(LandMultipliers.VOLCANIC_MULTIPLIER);
         }

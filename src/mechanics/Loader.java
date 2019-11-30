@@ -44,7 +44,7 @@ public class Loader {
 
             noRows = fs.nextInt();
             noColumns = fs.nextInt();
-            gamemap = new GameMap(noRows, noColumns);
+            GameMap gameMap = GameMap.getInstance(noRows, noColumns);
             for (int i = 0; i < noRows; ++i) {
                 tType = fs.nextWord();
                 for (int j = 0; j < noColumns; ++j) {
@@ -67,7 +67,7 @@ public class Loader {
 
                     Terrain dummy = terrainFactory.getTerrainType(terrainType);
                     terrains.add(dummy);
-                    gamemap.getMap().get(i).add(dummy);
+                    gameMap.getMap().get(i).add(dummy);
                 }
             }
 
@@ -114,6 +114,6 @@ public class Loader {
             e1.printStackTrace();
         }
 
-        return new Input(players, gamemap);
+        return new Input(players, gamemap, noRounds);
     }
 }

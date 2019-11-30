@@ -4,15 +4,17 @@ import constants.KnightConstants;
 import constants.LandMultipliers;
 import constants.PyromancerConstants;
 import constants.RaceMultiplier;
+import mechanics.GameMap;
 import player.*;
 import terrain.TerrainType;
 
 public class Slam extends Ability {
     public Slam(Player player) {
         super(player);
+        setCasterLevel(player.getLevel());
         setAbilityType(AbilityType.slam);
         setBaseDamage(KnightConstants.SLAM_STARTING_DAMAGE);
-        if (getGameMap().get(player.getxCoordinate()).
+        if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.land)) {
             setLandModifier(LandMultipliers.LAND_MULTIPLIER);
         }
@@ -23,8 +25,6 @@ public class Slam extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + KnightConstants.SLAM_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-
-        player.setRecievedDamage(damageGiven);
         player.setBlock(1);
     }
 

@@ -1,34 +1,36 @@
 package abilities;
 
+import player.Player;
+
 public class AbilityFactory {
     /**/
-    public Ability getPlayerType(AbilityType abilityType) {
+    public Ability getAbilityType(AbilityType abilityType, Player player) {
         if (abilityType == null) {
             return null;
         }
         if (abilityType.equals(AbilityType.ignite)) {
-            return new Ignite();
+            return new Ignite(player);
         }
         if (abilityType.equals(AbilityType.fireblast)) {
-            return new Fireblast();
+            return new Fireblast(player);
         }
         if (abilityType.equals(AbilityType.execute)) {
-            return new Execute();
+            return new Execute(player);
         }
         if (abilityType.equals(AbilityType.slam)) {
-            return new Slam();
+            return new Slam(player);
         }
         if (abilityType.equals(AbilityType.drain)) {
-            return new Drain();
+            return new Drain(player);
         }
         if (abilityType.equals(AbilityType.deflect)) {
-            return new Deflect();
+            return new Deflect(player);
         }
         if (abilityType.equals(AbilityType.backstab)) {
-            return new Backstab();
+            return new Backstab(player);
         }
         if (abilityType.equals(AbilityType.paralysis)) {
-            return new Paralysis();
+            return new Paralysis(player);
         }
         return null;
     }

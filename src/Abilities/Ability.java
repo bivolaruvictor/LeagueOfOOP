@@ -2,21 +2,25 @@ package abilities;
 
 import mechanics.GameMap;
 import player.Player;
+import player.Visitable;
 import terrain.Terrain;
 
 import java.util.ArrayList;
 
-public class Ability {
+public abstract class Ability implements Visitor {
+    private AbilityFactory abilityFactory;
     private int baseDamage;
     private int damage;
     private float landModifier;
     private float raceModifier;
     private AbilityType abilityType;
     private Integer casterLevel;
-    private ArrayList<ArrayList<Terrain>> gameMap = GameMap.getInstance().getMap();
+    private GameMap gameMap = GameMap.getInstance();
+
 
     public Ability(Player player) {
-        setCasterLevel(player.getLevel());
+        landModifier = 1.0f;
+        raceModifier = 1.0f;
     }
 
     public int getDamage() {
@@ -43,8 +47,16 @@ public class Ability {
         return casterLevel;
     }
 
-    public ArrayList<ArrayList<Terrain>> getGameMap() {
+    public GameMap getGameMap() {
         return gameMap;
+    }
+
+    public AbilityFactory getAbilityFactory() {
+        return abilityFactory;
+    }
+
+    public void setAbilityFactory(AbilityFactory abilityFactory) {
+        this.abilityFactory = abilityFactory;
     }
 
     public void setDamage(int damage) {
@@ -69,10 +81,6 @@ public class Ability {
 
     public void setCasterLevel(Integer casterLevel) {
         this.casterLevel = casterLevel;
-    }
-
-    public void interactWith(Player player) {
-
     }
 
     public void hurt(Player player) {

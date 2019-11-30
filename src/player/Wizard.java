@@ -1,5 +1,7 @@
 package player;
 
+import abilities.Ability;
+import abilities.Visitor;
 import constants.LandMultipliers;
 import constants.WizardConstants;
 
@@ -14,5 +16,9 @@ public class Wizard extends Player {
     public int getMaxHp() {
         return WizardConstants.WIZARD_STARTING_HP
                 + WizardConstants.WIZARD_HP_PER_LEVEL * getLevel();
+    }
+
+    public void accept(Visitor ability) {
+        ability.interactWith(this);
     }
 }
