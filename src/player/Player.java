@@ -1,10 +1,9 @@
 package player;
 
-import abilities.Ability;
 import abilities.AbilityFactory;
 import abilities.Visitor;
+import constants.PlayerConstants;
 import mechanics.GameMap;
-import terrain.Terrain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +24,7 @@ public abstract class Player implements Visitable {
     private int overtimeDamage;
     private int block;
     private AbilityFactory abilityFactory;
+    private boolean isAlive;
 
     Player() {
         round = 0;
@@ -37,6 +37,9 @@ public abstract class Player implements Visitable {
         recievedDamage = 0;
         block = 0;
         abilityFactory = new AbilityFactory();
+        isAlive = true;
+        overtimeRounds = 0;
+        overtimeDamage = 0;
     }
 
     public AbilityFactory getAbilityFactory() {
@@ -53,7 +56,12 @@ public abstract class Player implements Visitable {
     }
     /**/
     public void setHp(int hp) {
-        this.hp = hp;
+        if (hp > 0) {
+            this.hp = hp;
+        } else {
+            this.hp = hp;
+            isDead();
+        }
     }
     /**/
     public void setLevel(int level) {
@@ -99,6 +107,17 @@ public abstract class Player implements Visitable {
 
     public void setRound(int round) {
         this.round = round;
+    }
+
+    public boolean isAlive() {
+        return isAlive;
+    }
+
+    void isDead() {
+        isAlive = false;
+    }
+    public void setAlive(boolean alive) {
+        isAlive = alive;
     }
 
     /**/
@@ -167,7 +186,17 @@ public abstract class Player implements Visitable {
 
     /**/
     public String typeToString() {
-        return getType().toString();
+        switch (getType()) {
+            case knight :
+                return "K";
+            case pyromancer:
+                return "P";
+            case wizard :
+                return "W";
+            case rogue :
+                return "R";
+        }
+        return null;
     }
 
     public void accept(Visitor ability) {
@@ -182,8 +211,15 @@ public abstract class Player implements Visitable {
     }
 
     public void fightPlayer(Player player) {
+        if (player.getHp() <= 0) {
+            addKilledXp(player);
+        }
     }
 
+    public void addKilledXp(Player player) {
+        addXp(Math.max(0, (PlayerConstants.XP_WINNING_BASE
+                - (this.getLevel() - player.getLevel()) * PlayerConstants.XP_WINNING_MULTIPLYER)));
+    }
     public void movePlayer() {
         if (getBlock() == 0) {
             switch (getMoves().get(getRound())) {
@@ -208,5 +244,30 @@ public abstract class Player implements Visitable {
 
     public void recieveDamage() {
         setHp(getHp() - getRecievedDamage());
+    }
+
+    public void recieveOvertimeDamage() {
+        if (getOvertimeRounds() > 0) {
+            setHp(getHp() - getOvertimeDamage());
+            setOvertimeRounds(getOvertimeRounds() - 1);
+        }
+    }
+
+    public void addXp(int xP) {
+        setXp(getXp() + xP);
+    }
+    public void levelUp() {
+        while (getXp() >= PlayerConstants.XP_LEVEL_UP_BASE + getLevel() * PlayerConstants.XP_LEVEL_UP_MULTIPLYER) {
+            setXp(getXp() - PlayerConstants.XP_LEVEL_UP_BASE + getLevel() * PlayerConstants.XP_LEVEL_UP_MULTIPLYER);
+            setLevel(getLevel() + 1);
+        }
+        setHp(getMaxHp());
+    }
+
+    public String alive() {
+        if (isAlive()) {
+            return "alive";
+        }
+        return "dead";
     }
 }

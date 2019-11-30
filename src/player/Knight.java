@@ -25,12 +25,14 @@ public class Knight extends Player {
 
     @Override
     public void fightPlayer(Player player) {
-        Slam slam = (Slam) getAbilityFactory().getAbilityType(AbilityType.slam, player);
-        player.accept(slam);
-        System.out.println(player.getRecievedDamage());
-        player.recieveDamage();
         Execute execute = (Execute) getAbilityFactory().getAbilityType(AbilityType.execute, player);
         player.accept(execute);
+        System.out.println(player.getType().toString() + " recieved from execute " + player.getRecievedDamage());
         player.recieveDamage();
+        Slam slam = (Slam) getAbilityFactory().getAbilityType(AbilityType.slam, player);
+        player.accept(slam);
+        System.out.println(player.getType().toString() + " recieved from slam " + player.getRecievedDamage());
+        player.recieveDamage();
+        super.fightPlayer(player);
     }
 }

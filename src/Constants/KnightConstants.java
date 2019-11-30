@@ -12,5 +12,5 @@ public class KnightConstants {
 
     public static final int SLAM_STARTING_DAMAGE = 100;
     public static final int SLAM_DAMAGE_ADDED_PER_LEVEL = 40;
-    public static final int ROUNDS_OF_SLAM_STUN = 2;
+    public static final int ROUNDS_OF_SLAM_STUN = 1;
 }

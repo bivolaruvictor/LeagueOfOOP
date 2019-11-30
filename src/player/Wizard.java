@@ -1,7 +1,6 @@
 package player;
 
-import abilities.Ability;
-import abilities.Visitor;
+import abilities.*;
 import constants.LandMultipliers;
 import constants.WizardConstants;
 
@@ -20,5 +19,17 @@ public class Wizard extends Player {
 
     public void accept(Visitor ability) {
         ability.interactWith(this);
+    }
+
+    public void fightPlayer(Player player) {
+        Drain drain = (Drain) getAbilityFactory().getAbilityType(AbilityType.drain, player);
+        player.accept(drain);
+        System.out.println(player.getType().toString() + " recieved from drain " + player.getRecievedDamage());
+        player.recieveDamage();
+        Deflect deflect = (Deflect) getAbilityFactory().getAbilityType(AbilityType.deflect, player);
+        player.accept(deflect);
+        System.out.println(player.getType().toString() + " recieved from deflect " + player.getRecievedDamage());
+        player.recieveDamage();
+        super.fightPlayer(player);
     }
 }

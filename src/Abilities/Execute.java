@@ -29,7 +29,7 @@ public class Execute extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + KnightConstants.EXECUTE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-        if (givenDamage(player)  <= damageGiven) {
+        if (givenDamage(player) >= player.getHp()) {
             player.setRecievedDamage(player.getHp());
         } else {
             player.setRecievedDamage(damageGiven);
@@ -41,7 +41,7 @@ public class Execute extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + KnightConstants.EXECUTE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-        if (givenDamage(player)  <= damageGiven) {
+    if (givenDamage(player)  >= player.getHp()) {
             player.setRecievedDamage(player.getHp());
         } else {
             player.setRecievedDamage(damageGiven);
@@ -49,11 +49,11 @@ public class Execute extends Ability {
     }
 
     public void interactWith(Wizard player) {
-        setRaceModifier(RaceMultiplier.KNIGHT_ON_KNIGHT_EXECUTE);
+        setRaceModifier(RaceMultiplier.KNIGHT_ON_WIZARD_EXECUTE);
         int damageGiven = Math.round((getBaseDamage()
                 + KnightConstants.EXECUTE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-        if (givenDamage(player)  <= damageGiven) {
+        if (givenDamage(player)  >= player.getHp()) {
             player.setRecievedDamage(player.getHp());
         } else {
             player.setRecievedDamage(damageGiven);
@@ -65,7 +65,7 @@ public class Execute extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + KnightConstants.EXECUTE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-        if (givenDamage(player)  <= damageGiven) {
+        if (givenDamage(player)  >= player.getHp()) {
             player.setRecievedDamage(player.getHp());
         } else {
             player.setRecievedDamage(damageGiven);

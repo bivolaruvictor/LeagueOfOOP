@@ -15,6 +15,7 @@ public class Ignite extends Ability {
         super(player);
         setAbilityType(AbilityType.ignite);
         setBaseDamage(PyromancerConstants.IGNITE_STARTING_DAMAGE);
+        setCasterLevel(player.getLevel());
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.volcanic)) {
             setLandModifier(LandMultipliers.VOLCANIC_MULTIPLIER);
@@ -26,7 +27,6 @@ public class Ignite extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-
         player.setRecievedDamage(damageGiven);
 
         int secondaryDamage = PyromancerConstants.IGNITE_SECONDARY_STARTING_DAMAGE

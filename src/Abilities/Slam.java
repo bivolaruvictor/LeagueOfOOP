@@ -25,7 +25,8 @@ public class Slam extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + KnightConstants.SLAM_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-        player.setBlock(1);
+        player.setRecievedDamage(damageGiven);
+        player.setBlock(KnightConstants.ROUNDS_OF_SLAM_STUN);
     }
 
     public void interactWith(Pyromancer player) {
@@ -33,9 +34,8 @@ public class Slam extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + KnightConstants.SLAM_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier());
-
         player.setRecievedDamage(damageGiven);
-        player.setBlock(1);
+        player.setBlock(KnightConstants.ROUNDS_OF_SLAM_STUN);
     }
 
     public void interactWith(Wizard player) {
@@ -45,7 +45,7 @@ public class Slam extends Ability {
                 * getRaceModifier() * getLandModifier());
 
         player.setRecievedDamage(damageGiven);
-        player.setBlock(1);
+        player.setBlock(KnightConstants.ROUNDS_OF_SLAM_STUN);
     }
 
     public void interactWith(Rogue player) {
@@ -55,6 +55,6 @@ public class Slam extends Ability {
                 * getRaceModifier() * getLandModifier());
 
         player.setRecievedDamage(damageGiven);
-        player.setBlock(1);
+        player.setBlock(KnightConstants.ROUNDS_OF_SLAM_STUN);
     }
 }

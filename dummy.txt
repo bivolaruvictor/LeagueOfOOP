@@ -1,8 +1,17 @@
-Player is knight is located at ( 0, 0 ), has HP 900, XP 0, and his moves are [_, _]
-Player is knight is located at ( 0, 0 ), has HP 900, XP 0, and his moves are [_, _]
+BEGINNING : 
+K 0 0 900 0 0
+W 0 0 400 0 0
 
-Player is knight is located at ( 0, 0 ), has HP 0, XP 0, and his moves are [_, _]
-Player is knight is located at ( 0, 0 ), has HP 0, XP 0, and his moves are [_, _]
+-------------END BEGINNING--------------
+Round:  0
 
-Player is knight is located at ( 0, 0 ), has HP 0, XP 0, and his moves are [_, _]
-Player is knight is located at ( 0, 0 ), has HP 0, XP 0, and his moves are [_, _]
+K 0 0 794 0 0
+W 0 0 135 0 0
+
+-------------END ROUND    ------------
+Round:  1
+
+K 0 200 688 0 0
+W dead
+
+-------------END ROUND    ------------

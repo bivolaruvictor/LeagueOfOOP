@@ -15,6 +15,7 @@ public class Fireblast extends Ability {
         super(player);
         setAbilityType(AbilityType.fireblast);
         setBaseDamage(PyromancerConstants.FIREBLAST_STARTING_DAMAGE);
+        setCasterLevel(player.getLevel());
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.volcanic)) {
             setLandModifier(LandMultipliers.VOLCANIC_MULTIPLIER);
