@@ -38,9 +38,10 @@ public class GameMap {
         return numColumns;
     }
 
-//    public static GameMap getInstance() {
-//        if (singleInstance == null) {
-//            singleInstance = new GameMap();
-//        }
-//    }
+    public static GameMap getInstance() {
+        if (singleInstance == null) {
+            singleInstance = new GameMap();
+        }
+        return singleInstance;
+    }
 }

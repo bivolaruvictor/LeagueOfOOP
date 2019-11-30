@@ -14,16 +14,16 @@ public final class Main {
         Input input = loader.load();
         try {
             FileSystem fs = new FileSystem(args[0], args[1]);
-            fs.writeWord("AAAAA");
             for (Player player: input.getPlayers()) {
                 fs.writeWord(
                 ("Player is " + player.typeToString() + " is located at ( "
                         + player.getxCoordinate() + ", "
                         + player.getyCoordinate() + " )"
                         + ", has HP " + player.getHp() + ", XP "
-                        + player.getXp() + ", and his moves are" + player.getMoves().toString()));
+                        + player.getXp() + ", and his moves are " + player.getMoves().toString()));
                 fs.writeNewLine();
             }
+            fs.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

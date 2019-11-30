@@ -31,7 +31,6 @@ public class Input {
     public final boolean isValidInput() {
         boolean membersInstantiated = players != null && gameMap != null;
         boolean membersNotEmpty = players.size() > 0 && gameMap.getMap().size() > 0;
-
         return membersInstantiated && membersNotEmpty;
     }
 }

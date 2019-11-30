@@ -1,0 +1,4 @@
+Player is rogue is located at ( 0, 0 ), has HP 600, XP 0, and his moves are [R, _, _, _, _]
+Player is wizard is located at ( 0, 2 ), has HP 400, XP 0, and his moves are [L, _, _, _, _]
+Player is wizard is located at ( 1, 0 ), has HP 400, XP 0, and his moves are [R, _, _, _, U]
+Player is wizard is located at ( 1, 2 ), has HP 400, XP 0, and his moves are [L, _, _, _, _]

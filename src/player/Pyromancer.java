@@ -1,5 +1,6 @@
 package player;
 
+import constants.LandMultipliers;
 import constants.PyromancerConstants;
 
 public class Pyromancer extends Player {
@@ -7,5 +8,11 @@ public class Pyromancer extends Player {
         super();
         setType(PlayerType.pyromancer);
         setHp(PyromancerConstants.PYROMANCER_STARTING_HP);
+        setTerrainBonus(LandMultipliers.VOLCANIC_MULTIPLIER);
+    }
+    @Override
+    public int getMaxHp() {
+        return PyromancerConstants.PYROMANCER_STARTING_HP
+                + PyromancerConstants.PYROMANCER_HP_PER_LEVEL * getLevel();
     }
 }
