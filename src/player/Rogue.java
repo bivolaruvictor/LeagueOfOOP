@@ -43,6 +43,7 @@ public class Rogue extends Player {
         player.accept(paralysis);
         System.out.println(player.getType().toString() + " recieved from paralysis " + player.getRecievedDamage());
         player.recieveDamage();
+        this.setBruteDamage(player.getBruteDamage());
         super.fightPlayer(player);
     }
 }

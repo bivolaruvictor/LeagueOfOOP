@@ -13,15 +13,18 @@ public class Backstab extends Ability {
         super(player);
         setAbilityType(AbilityType.backstab);
         setBaseDamage(RogueConstants.BACKSTAB_STARTING_DAMAGE);
+        setCasterLevel(player.getLevel());
         critical = 1.0f;
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.woods)) {
             setLandModifier(LandMultipliers.WOODS_MULTIPLIER);
-            Rogue dummy = (Rogue) player;
-            if (dummy.getNumberOfBackstabs() - 1 % RogueConstants.BACKSTAB_CRITICAL_CHARGE == 0) {
+            if (player.getRound() - 1 % RogueConstants.BACKSTAB_CRITICAL_CHARGE == 0) {
                 setCritical(RogueConstants.BACKSTAB_CRITICAL_MULTIPLYER);
             }
         }
+        player.setBruteDamage(Math.round((getBaseDamage()
+                + RogueConstants.BACKSTAB_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                *  getLandModifier() * getCritical()));
     }
 
     public float getCritical() {
@@ -44,7 +47,7 @@ public class Backstab extends Ability {
     public void interactWith(Pyromancer player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_PYROMANCER_BACKSTAB);
         int damageGiven = Math.round((getBaseDamage()
-                + PyromancerConstants.FIREBLAST_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                + RogueConstants.BACKSTAB_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier() * getCritical());
 
         player.setRecievedDamage(damageGiven);

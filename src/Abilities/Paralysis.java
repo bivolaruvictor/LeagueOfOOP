@@ -14,11 +14,15 @@ public class Paralysis extends Ability {
         setBlockMovement(RogueConstants.PARALYSIS_EFFECT_ALL_TERRAIN);
         setAbilityType(AbilityType.paralysis);
         setBaseDamage(RogueConstants.PARALYSIS_STARTING_DAMAGE);
+        setCasterLevel(player.getLevel());
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.woods)) {
             setLandModifier(LandMultipliers.WOODS_MULTIPLIER);
             setBlockMovement(RogueConstants.PARALYSIS_EFFECT_WOODS);
         }
+        player.setBruteDamage(player.getBruteDamage() + Math.round((getBaseDamage()
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                *  getLandModifier()));
     }
 
     public int getBlockMovement() {
@@ -36,6 +40,9 @@ public class Paralysis extends Ability {
                 * getRaceModifier() * getLandModifier());
 
         player.setRecievedDamage(damageGiven);
+        player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+        player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }
 
@@ -46,6 +53,9 @@ public class Paralysis extends Ability {
                 * getRaceModifier() * getLandModifier());
 
         player.setRecievedDamage(damageGiven);
+        player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+        player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }
 
@@ -56,6 +66,9 @@ public class Paralysis extends Ability {
                 * getRaceModifier() * getLandModifier());
 
         player.setRecievedDamage(damageGiven);
+        player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+        player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }
 
@@ -66,6 +79,9 @@ public class Paralysis extends Ability {
                 * getRaceModifier() * getLandModifier());
 
         player.setRecievedDamage(damageGiven);
+        player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+        player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }
 }

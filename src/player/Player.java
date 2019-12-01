@@ -18,6 +18,7 @@ public abstract class Player implements Visitable {
     private int yCoordinate;
     private List<Character> moves;
     private Float terrainBonus;
+    private Float raceBonus;
     private GameMap gameMap = GameMap.getInstance();
     private int recievedDamage;
     private int overtimeRounds;
@@ -25,6 +26,7 @@ public abstract class Player implements Visitable {
     private int block;
     private AbilityFactory abilityFactory;
     private boolean isAlive;
+    private int bruteDamage;
 
     Player() {
         round = 0;
@@ -34,6 +36,7 @@ public abstract class Player implements Visitable {
         yCoordinate = -1;
         moves = new ArrayList<>();
         terrainBonus = 1.0f;
+        raceBonus = 1.0f;
         recievedDamage = 0;
         block = 0;
         abilityFactory = new AbilityFactory();
@@ -118,6 +121,23 @@ public abstract class Player implements Visitable {
     }
     public void setAlive(boolean alive) {
         isAlive = alive;
+    }
+
+    public Float getRaceBonus() {
+        return raceBonus;
+    }
+
+    public void setRaceBonus(Float raceBonus) {
+        this.raceBonus = raceBonus;
+    }
+
+
+    public int getBruteDamage() {
+        return bruteDamage;
+    }
+
+    public void setBruteDamage(int bruteDamage) {
+        this.bruteDamage = bruteDamage;
     }
 
     /**/
@@ -255,6 +275,7 @@ public abstract class Player implements Visitable {
 
     public void addXp(int xP) {
         setXp(getXp() + xP);
+        levelUp();
     }
     public void levelUp() {
         while (getXp() >= PlayerConstants.XP_LEVEL_UP_BASE + getLevel() * PlayerConstants.XP_LEVEL_UP_MULTIPLYER) {

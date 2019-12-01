@@ -32,5 +32,7 @@ public class Pyromancer extends Player {
         player.accept(ignite);
         System.out.println(player.getType().toString() + " recieved from ignite  " + player.getRecievedDamage());
         player.recieveDamage();
+        this.setBruteDamage(player.getBruteDamage());
+        super.fightPlayer(player);
     }
 }
