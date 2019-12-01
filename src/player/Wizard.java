@@ -32,5 +32,6 @@ public class Wizard extends Player {
         player.recieveDamage();
         this.setBruteDamage(player.getBruteDamage());
         System.out.println();
+        super.fightPlayer(player);
     }
 }

@@ -33,9 +33,12 @@ public final class Main {
                 fs.writeWord("Round:  " + k);
                 System.out.println("Round : " + k);
                 for (Player player : input.getPlayers()) {
+                    player.recieveOvertimeDamage();
+                    if (player.getHp() <= 0) {
+                        player.setAlive(false);
+                    }
                     if (player.isAlive()) {
                         player.movePlayer();
-                        player.recieveOvertimeDamage();
                     }
                 }
                 fs.writeNewLine();
@@ -45,6 +48,9 @@ public final class Main {
                         if (input.getPlayers().get(i).fight(input.getPlayers().get(j))
                                 && input.getPlayers().get(i).isAlive()
                                 && input.getPlayers().get(j).isAlive()) {
+                            System.out.println(input.getPlayers().get(i).getType().toString()
+                                    + " FIGHTS " + input.getPlayers().get(j).getType().toString()
+                            + " on " + input.getPlayers().get(i).getxCoordinate() + input.getPlayers().get(i).getyCoordinate());
                             if (input.getPlayers().get(i).getType().equals(PlayerType.wizard)
                                     && !input.getPlayers().get(j).getType().equals(PlayerType.wizard)) {
                                 input.getPlayers().get(j).fightPlayer(input.getPlayers().get(i));

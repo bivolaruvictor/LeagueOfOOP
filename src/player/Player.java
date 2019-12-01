@@ -231,6 +231,9 @@ public abstract class Player implements Visitable {
     }
 
     public void fightPlayer(Player player) {
+        if (player.getHp() <= 0) {
+            player.isDead();
+        }
     }
 
     public void addKilledXp(Player player) {
@@ -252,9 +255,13 @@ public abstract class Player implements Visitable {
                 case ('R'):
                     setyCoordinate(getyCoordinate() + 1);
                     break;
+                case ('_'):
+                    break;
                 default:
                     break;
             }
+        } else {
+            setBlock(getBlock() - 1);
         }
     }
 
