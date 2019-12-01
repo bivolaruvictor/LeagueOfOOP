@@ -1,25 +1,20 @@
-package mechanics;
+package main;
 import player.Player;
-import terrain.Terrain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Input {
 
     private List<Player> players;
-    private GameMap gameMap;
     private int numberOfRounds;
 
     public Input() {
         players = null;
-        gameMap = null;
         numberOfRounds = -1;
     }
 
-    public Input(List<Player> players, GameMap gameMap, int numberOfRounds) {
+    public Input(List<Player> players, int numberOfRounds) {
         this.players = players;
-        this.gameMap = gameMap;
         this.numberOfRounds = numberOfRounds;
     }
 
@@ -29,17 +24,13 @@ public class Input {
     }
 
     /**/
-    public GameMap getGameMap() {
-        return gameMap;
-    }
-
     public int getNumberOfRounds() {
         return numberOfRounds;
     }
 
     public final boolean isValidInput() {
-        boolean membersInstantiated = players != null && gameMap != null;
-        boolean membersNotEmpty = players.size() > 0 && gameMap.getMap().size() > 0;
+        boolean membersInstantiated = players != null;
+        boolean membersNotEmpty = players.size() > 0 && getNumberOfRounds() >= 0;
         return membersInstantiated && membersNotEmpty;
     }
 }

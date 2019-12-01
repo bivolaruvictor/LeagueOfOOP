@@ -1,10 +1,13 @@
 package abilities;
 
 import constants.LandMultipliers;
-import constants.PyromancerConstants;
 import constants.RaceMultiplier;
 import constants.WizardConstants;
-import player.*;
+import player.Knight;
+import player.Rogue;
+import player.Pyromancer;
+import player.Wizard;
+import player.Player;
 import terrain.TerrainType;
 
 public class Deflect extends Ability {
@@ -23,40 +26,41 @@ public class Deflect extends Ability {
         }
         setCasterDamage(player.getBruteDamage());
     }
-
+    /**/
     public float getDeflectPercentage() {
         return deflectPercentage;
     }
-
+    /**/
     public int getCasterDamage() {
         return casterDamage;
     }
-
+    /**/
     public void setCasterDamage(int casterDamage) {
         this.casterDamage = casterDamage;
     }
-
+    /**/
     public void setDeflectPercentage(float deflectPercentage) {
         this.deflectPercentage = deflectPercentage;
     }
+    /**/
     public void interactWith(Knight player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_KNIGHT_DEFLECT);
         int damageGiven = Math.round(player.getBruteDamage()
                 * getDeflectPercentage() * getRaceModifier());
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Pyromancer player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_PYROMANCER_DEFLECT);
         int damageGiven = Math.round(player.getBruteDamage()
                 * getDeflectPercentage() * getRaceModifier());
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Wizard player) {
         player.setRecievedDamage(0);
     }
-
+    /**/
     public void interactWith(Rogue player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_ROGUE_DEFLECT);
         int damageGiven = Math.round(player.getBruteDamage()

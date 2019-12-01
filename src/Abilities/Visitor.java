@@ -1,10 +1,13 @@
 package abilities;
 
-import player.*;
+import player.Knight;
+import player.Rogue;
+import player.Pyromancer;
+import player.Wizard;
 
 public interface Visitor {
-    public void interactWith(Knight knight);
-    public void interactWith(Pyromancer pyromancer);
-    public void interactWith(Wizard wizard);
-    public void interactWith(Rogue rogue);
+    void interactWith(Knight knight);
+    void interactWith(Pyromancer pyromancer);
+    void interactWith(Wizard wizard);
+    void interactWith(Rogue rogue);
 }

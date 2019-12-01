@@ -1,10 +1,13 @@
 package abilities;
 
 import constants.LandMultipliers;
-import constants.PyromancerConstants;
 import constants.RaceMultiplier;
 import constants.RogueConstants;
-import player.*;
+import player.Knight;
+import player.Rogue;
+import player.Pyromancer;
+import player.Wizard;
+import player.Player;
 import terrain.TerrainType;
 
 public class Paralysis extends Ability {
@@ -24,15 +27,15 @@ public class Paralysis extends Ability {
                 + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 *  getLandModifier()));
     }
-
+    /**/
     public int getBlockMovement() {
         return blockMovement;
     }
-
+    /**/
     public void setBlockMovement(int blockMovement) {
         this.blockMovement = blockMovement;
     }
-
+    /**/
     public void interactWith(Knight player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_KNIGHT_PARALISYS);
         int damageGiven = Math.round((getBaseDamage()
@@ -40,12 +43,11 @@ public class Paralysis extends Ability {
                 * getRaceModifier() * getLandModifier());
 
         player.setRecievedDamage(damageGiven);
-        player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
-                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+        player.setOvertimeDamage(damageGiven);
         player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }
-
+    /**/
     public void interactWith(Pyromancer player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_PYROMANCER_PARALISYS);
         int damageGiven = Math.round((getBaseDamage()
@@ -54,11 +56,12 @@ public class Paralysis extends Ability {
 
         player.setRecievedDamage(damageGiven);
         player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
-                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                * getLandModifier() * getRaceModifier()));
         player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }
-
+    /**/
     public void interactWith(Wizard player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_WIZARD_PARALISYS);
         int damageGiven = Math.round((getBaseDamage()
@@ -67,11 +70,12 @@ public class Paralysis extends Ability {
 
         player.setRecievedDamage(damageGiven);
         player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
-                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                * getLandModifier() * getRaceModifier()));
         player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }
-
+    /**/
     public void interactWith(Rogue player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_ROGUE_PARALISYS);
         int damageGiven = Math.round((getBaseDamage()
@@ -80,7 +84,8 @@ public class Paralysis extends Ability {
 
         player.setRecievedDamage(damageGiven);
         player.setOvertimeDamage(Math.round((RogueConstants.PARALYSIS_STARTING_DAMAGE
-                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier() * getRaceModifier()));
+                + RogueConstants.PARALYSIS_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                * getLandModifier() * getRaceModifier()));
         player.setOvertimeRounds(getBlockMovement());
         player.setBlock(getBlockMovement());
     }

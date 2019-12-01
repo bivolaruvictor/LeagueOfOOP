@@ -3,7 +3,11 @@ package abilities;
 import constants.LandMultipliers;
 import constants.RaceMultiplier;
 import constants.WizardConstants;
-import player.*;
+import player.Knight;
+import player.Rogue;
+import player.Pyromancer;
+import player.Wizard;
+import player.Player;
 import terrain.TerrainType;
 
 public class Drain extends Ability {
@@ -20,15 +24,15 @@ public class Drain extends Ability {
         }
 
     }
-
+    /**/
     public float getDrainPercentage() {
         return drainPercentage;
     }
-
+    /**/
     public void setDrainPercentage(float drainPercentage) {
         this.drainPercentage = drainPercentage;
     }
-
+    /**/
     public void interactWith(Knight player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_KNIGHT_DRAIN);
         int damageGiven = Math.round(getDrainPercentage()
@@ -37,7 +41,7 @@ public class Drain extends Ability {
 
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Pyromancer player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_PYROMANCER_DRAIN);
         int damageGiven = Math.round(getDrainPercentage()
@@ -45,7 +49,7 @@ public class Drain extends Ability {
                 * player.getMaxHp(), player.getHp()) * getRaceModifier());
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Wizard player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_WIZARD_DRAIN);
         int damageGiven = Math.round(getDrainPercentage()
@@ -53,7 +57,7 @@ public class Drain extends Ability {
                 * player.getMaxHp(), player.getHp()) * getRaceModifier());
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Rogue player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_ROGUE_DRAIN);
         int damageGiven = Math.round(getDrainPercentage()

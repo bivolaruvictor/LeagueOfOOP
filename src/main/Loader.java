@@ -1,4 +1,4 @@
-package mechanics;
+package main;
 import fileio.FileSystem;
 import player.Player;
 import player.PlayerFactory;
@@ -18,7 +18,7 @@ public class Loader {
         mInputPath = inputPath;
         mOutputPath = outputPath;
     }
-
+    /**/
     public Input load() {
         PlayerFactory playerFactory = new PlayerFactory();
         TerrainFactory terrainFactory = new TerrainFactory();
@@ -114,6 +114,6 @@ public class Loader {
             e1.printStackTrace();
         }
 
-        return new Input(players, gamemap, noRounds);
+        return new Input(players, noRounds);
     }
 }

@@ -24,7 +24,7 @@ public class Fireblast extends Ability {
                 + PyromancerConstants.FIREBLAST_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 *  getLandModifier()));
     }
-
+    /**/
     public void interactWith(Knight player) {
         setRaceModifier(RaceMultiplier.PYROMANCER_ON_KNIGHT_FIREBLAST);
         int damageGiven = Math.round((getBaseDamage()
@@ -33,7 +33,7 @@ public class Fireblast extends Ability {
 
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Pyromancer player) {
         setRaceModifier(RaceMultiplier.PYROMANCER_ON_PYROMANCER_FIREBLAST);
         int damageGiven = Math.round((getBaseDamage()
@@ -42,7 +42,7 @@ public class Fireblast extends Ability {
 
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Wizard player) {
         setRaceModifier(RaceMultiplier.PYROMANCER_ON_WIZARD_FIREBLAST);
         int damageGiven = Math.round((getBaseDamage()
@@ -51,7 +51,7 @@ public class Fireblast extends Ability {
 
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Rogue player) {
         setRaceModifier(RaceMultiplier.PYROMANCER_ON_ROGUE_FIREBLAST);
         int damageGiven = Math.round((getBaseDamage()

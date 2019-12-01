@@ -3,7 +3,7 @@ package player;
 import abilities.AbilityFactory;
 import abilities.Visitor;
 import constants.PlayerConstants;
-import mechanics.GameMap;
+import main.GameMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,15 +44,10 @@ public abstract class Player implements Visitable {
         overtimeRounds = 0;
         overtimeDamage = 0;
     }
-
+    /**/
     public AbilityFactory getAbilityFactory() {
         return abilityFactory;
     }
-
-    public void setAbilityFactory(AbilityFactory abilityFactory) {
-        this.abilityFactory = abilityFactory;
-    }
-
     /**/
     public void setType(PlayerType type) {
         this.type = type;
@@ -91,55 +86,54 @@ public abstract class Player implements Visitable {
     /**/
     public void setTerrainBonus(Float terrainBonus) {
     }
-
+    /**/
     public void setRecievedDamage(int recievedDamage) {
         this.recievedDamage = recievedDamage;
     }
-
+    /**/
     public void setOvertimeRounds(int overtimeRounds) {
         this.overtimeRounds = overtimeRounds;
     }
-
+    /**/
     public void setOvertimeDamage(int overtimeDamage) {
         this.overtimeDamage = overtimeDamage;
     }
-
+    /**/
     public void setBlock(int block) {
         this.block = block;
     }
-
+    /**/
     public void setRound(int round) {
         this.round = round;
     }
-
+    /**/
     public boolean isAlive() {
         return isAlive;
     }
-
+    /**/
     void isDead() {
         isAlive = false;
     }
+    /**/
     public void setAlive(boolean alive) {
         isAlive = alive;
     }
-
+    /**/
     public Float getRaceBonus() {
         return raceBonus;
     }
-
+    /**/
     public void setRaceBonus(Float raceBonus) {
         this.raceBonus = raceBonus;
     }
-
-
+    /**/
     public int getBruteDamage() {
         return bruteDamage;
     }
-
+    /**/
     public void setBruteDamage(int bruteDamage) {
         this.bruteDamage = bruteDamage;
     }
-
     /**/
     public void addMove(Character movement) {
         getMoves().add(movement);
@@ -167,7 +161,7 @@ public abstract class Player implements Visitable {
     public int getHp() {
         return hp;
     }
-
+    /**/
     public int getMaxHp() {
         return 0;
     }
@@ -183,27 +177,26 @@ public abstract class Player implements Visitable {
     public Float getTerrainBonus() {
         return terrainBonus;
     }
-
+    /**/
     public int getRecievedDamage() {
         return recievedDamage;
     }
-
+    /**/
     public int getOvertimeRounds() {
         return overtimeRounds;
     }
-
+    /**/
     public int getOvertimeDamage() {
         return overtimeDamage;
     }
-
+    /*block este parametrul care dicteaza cate runde de "stat pe bara mai are"*/
     public int getBlock() {
         return block;
     }
-
+    /**/
     public int getRound() {
         return round;
     }
-
     /**/
     public String typeToString() {
         switch (getType()) {
@@ -215,13 +208,14 @@ public abstract class Player implements Visitable {
                 return "W";
             case rogue :
                 return "R";
+            default :
+                return null;
         }
-        return null;
     }
-
+    /**/
     public void accept(Visitor ability) {
     }
-
+    /*Se poate bate cu un jucator doar daca au aceleasi coordonate*/
     public boolean fight(Player player) {
         if (this.getxCoordinate() == player.getxCoordinate()
         && this.getyCoordinate() == player.getyCoordinate()) {
@@ -229,18 +223,44 @@ public abstract class Player implements Visitable {
         }
         return false;
     }
-
+    /*Conditiile suplimentare sunt puse ca in cazul in care un jucator care nu este wizard
+    * se intalneste cu un wizard sa atace el primul, pentru ca altfel wizard nu are la ce sa
+    * dea deflect*/
+    public void simulateFight(Player attacked) {
+        if (this.fight(attacked) && this.isAlive() && attacked.isAlive()) {
+            if (this.getType().equals(PlayerType.wizard)
+                    && !attacked.getType().equals(PlayerType.wizard)) {
+                attacked.fightPlayer(this);
+                this.fightPlayer(attacked);
+            } else {
+                this.fightPlayer(attacked);
+                attacked.fightPlayer(this);
+            }
+            /* Se adauga Xp celui care isi omoara adversarul
+            * Este astfel acoperit si cazul mortii simultane*/
+            if (!this.isAlive()) {
+                attacked.addKilledXp(this);
+            }
+            if (!attacked.isAlive()) {
+                this.addKilledXp(attacked);
+            }
+        }
+    }
+    /**/
     public void fightPlayer(Player player) {
         if (player.getHp() <= 0) {
             player.isDead();
         }
     }
-
+    /*Calculez xp ul ce trebuie dat invingatorului, si i-l dau*/
     public void addKilledXp(Player player) {
         addXp(Math.max(0, (PlayerConstants.XP_WINNING_BASE
                 - (this.getLevel() - player.getLevel()) * PlayerConstants.XP_WINNING_MULTIPLYER)));
     }
+    /**/
     public void movePlayer() {
+        /*Pentru cazul in care nu trebuie sa stea pe bara
+        * alfel se trece peste miscarea curenta*/
         if (getBlock() == 0) {
             switch (getMoves().get(getRound())) {
                 case ('U'):
@@ -264,31 +284,33 @@ public abstract class Player implements Visitable {
             setBlock(getBlock() - 1);
         }
     }
-
+    /**/
     public void recieveDamage() {
         setHp(getHp() - getRecievedDamage());
     }
-
+    /*Daca are overtime damage, il primeste*/
     public void recieveOvertimeDamage() {
         if (getOvertimeRounds() > 0) {
             setHp(getHp() - getOvertimeDamage());
             setOvertimeRounds(getOvertimeRounds() - 1);
         }
     }
-
+    /**/
     public void addXp(int xP) {
         setXp(getXp() + xP);
         levelUp();
     }
+    /**/
     public void levelUp() {
         int oldLevel = getLevel();
-        int newLevel = (getXp() - PlayerConstants.XP_LEVEL_UP_BASE) / PlayerConstants.XP_LEVEL_UP_MULTIPLYER + 1;
+        int newLevel = (getXp() - PlayerConstants.XP_LEVEL_UP_BASE)
+                / PlayerConstants.XP_LEVEL_UP_MULTIPLYER + 1;
         if (newLevel != oldLevel) {
             setLevel(newLevel);
             setHp(getMaxHp());
         }
     }
-
+    /**/
     public String alive() {
         if (isAlive()) {
             return "alive";

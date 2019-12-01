@@ -4,7 +4,11 @@ import constants.LandMultipliers;
 import constants.PyromancerConstants;
 import constants.RaceMultiplier;
 import constants.RogueConstants;
-import player.*;
+import player.Knight;
+import player.Rogue;
+import player.Pyromancer;
+import player.Wizard;
+import player.Player;
 import terrain.TerrainType;
 
 public class Backstab extends Ability {
@@ -18,7 +22,6 @@ public class Backstab extends Ability {
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.woods)) {
             setLandModifier(LandMultipliers.WOODS_MULTIPLIER);
-            System.out.println(player.getRound());
             if (player.getRound() % RogueConstants.BACKSTAB_CRITICAL_CHARGE == 0) {
                 setCritical(RogueConstants.BACKSTAB_CRITICAL_MULTIPLYER);
             }
@@ -27,15 +30,15 @@ public class Backstab extends Ability {
                 + RogueConstants.BACKSTAB_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 *  getLandModifier() * getCritical()));
     }
-
+    /**/
     public float getCritical() {
         return critical;
     }
-
+    /**/
     public void setCritical(float critical) {
         this.critical = critical;
     }
-
+    /**/
     public void interactWith(Knight player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_KNIGHT_BACKSTAB);
         int damageGiven = Math.round((getBaseDamage()
@@ -44,7 +47,7 @@ public class Backstab extends Ability {
 
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Pyromancer player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_PYROMANCER_BACKSTAB);
         int damageGiven = Math.round((getBaseDamage()
@@ -53,7 +56,7 @@ public class Backstab extends Ability {
 
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Wizard player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_WIZARD_BACKSTAB);
         int damageGiven = Math.round((getBaseDamage()
@@ -61,7 +64,7 @@ public class Backstab extends Ability {
                 * getRaceModifier() * getLandModifier() * getCritical());
         player.setRecievedDamage(damageGiven);
     }
-
+    /**/
     public void interactWith(Rogue player) {
         setRaceModifier(RaceMultiplier.ROGUE_ON_ROGUE_BACKSTAB);
         int damageGiven = Math.round((getBaseDamage()

@@ -1,4 +1,4 @@
-package mechanics;
+package main;
 
 import terrain.Terrain;
 
@@ -27,7 +27,7 @@ public class GameMap {
     public ArrayList<ArrayList<Terrain>> getMap() {
         return map;
     }
-
+    /**/
     public void addToMap(int row, Terrain column) {
         getMap().get(row).add(column);
     }
