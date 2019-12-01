@@ -30,6 +30,7 @@ public class Wizard extends Player {
         player.accept(deflect);
         System.out.println(player.getType().toString() + " recieved from deflect " + player.getRecievedDamage());
         player.recieveDamage();
-        super.fightPlayer(player);
+        this.setBruteDamage(player.getBruteDamage());
+        System.out.println();
     }
 }

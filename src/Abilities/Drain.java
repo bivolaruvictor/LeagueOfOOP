@@ -16,8 +16,9 @@ public class Drain extends Ability {
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.dessert)) {
             setLandModifier(LandMultipliers.DESERT_MULTIPLIER);
-        setDrainPercentage(getDrainPercentage() * getLandModifier());
+            setDrainPercentage(getDrainPercentage() * getLandModifier());
         }
+
     }
 
     public float getDrainPercentage() {

@@ -14,13 +14,14 @@ public class Deflect extends Ability {
         super(player);
         setAbilityType(AbilityType.deflect);
         setDeflectPercentage(Math.min(WizardConstants.DEFLECT_STARTING_PERCENTAGE
-                + WizardConstants.DRAIN_PERCENTAGE_ADDED_PER_LEVEL
+                + WizardConstants.DEFLECT_PERCENTAGE_ADDED_PER_LEVEL
                 * player.getLevel(), WizardConstants.DEFLECT_MAXIMUM_PERCENTAGE));
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.dessert)) {
             setLandModifier(LandMultipliers.DESERT_MULTIPLIER);
+            setDeflectPercentage(getDeflectPercentage() * getLandModifier());
         }
-        setCasterDamage(player.getRecievedDamage());
+        setCasterDamage(player.getBruteDamage());
     }
 
     public float getDeflectPercentage() {
@@ -40,28 +41,25 @@ public class Deflect extends Ability {
     }
     public void interactWith(Knight player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_KNIGHT_DEFLECT);
-        int damageGiven = Math.round(getCasterDamage()
+        int damageGiven = Math.round(player.getBruteDamage()
                 * getDeflectPercentage() * getRaceModifier());
         player.setRecievedDamage(damageGiven);
     }
 
     public void interactWith(Pyromancer player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_PYROMANCER_DEFLECT);
-        int damageGiven = Math.round(getCasterDamage()
+        int damageGiven = Math.round(player.getBruteDamage()
                 * getDeflectPercentage() * getRaceModifier());
         player.setRecievedDamage(damageGiven);
     }
 
     public void interactWith(Wizard player) {
-        setRaceModifier(RaceMultiplier.WIZARD_ON_WIZARD_DEFLECT);
-        int damageGiven = Math.round(getCasterDamage()
-                * getDeflectPercentage() * getRaceModifier());
-        player.setRecievedDamage(damageGiven);
+        player.setRecievedDamage(0);
     }
 
     public void interactWith(Rogue player) {
         setRaceModifier(RaceMultiplier.WIZARD_ON_ROGUE_DEFLECT);
-        int damageGiven = Math.round(getCasterDamage()
+        int damageGiven = Math.round(player.getBruteDamage()
                 * getDeflectPercentage() * getRaceModifier());
         player.setRecievedDamage(damageGiven);
     }

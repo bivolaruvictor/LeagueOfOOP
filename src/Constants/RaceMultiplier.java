@@ -38,7 +38,7 @@ public class RaceMultiplier {
 
     public static final float ROGUE_ON_ROGUE_PARALISYS = 0.9f;
     public static final float ROGUE_ON_KNIGHT_PARALISYS = 0.8f;
-    public static final float ROGUE_ON_PYROMANCER_PARALISYS = 1.02f;
+    public static final float ROGUE_ON_PYROMANCER_PARALISYS = 1.2f;
     public static final float ROGUE_ON_WIZARD_PARALISYS = 1.25f;
 
 }

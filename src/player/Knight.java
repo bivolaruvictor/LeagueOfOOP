@@ -34,6 +34,6 @@ public class Knight extends Player {
         System.out.println(player.getType().toString() + " recieved from slam " + player.getRecievedDamage());
         player.recieveDamage();
         this.setBruteDamage(player.getBruteDamage());
-        super.fightPlayer(player);
+        System.out.println();
     }
 }

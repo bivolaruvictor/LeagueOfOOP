@@ -20,6 +20,9 @@ public class Fireblast extends Ability {
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.volcanic)) {
             setLandModifier(LandMultipliers.VOLCANIC_MULTIPLIER);
         }
+        player.setBruteDamage(Math.round((getBaseDamage()
+                + PyromancerConstants.FIREBLAST_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                *  getLandModifier()));
     }
 
     public void interactWith(Knight player) {

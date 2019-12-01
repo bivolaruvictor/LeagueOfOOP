@@ -18,7 +18,8 @@ public class Backstab extends Ability {
         if (getGameMap().getMap().get(player.getxCoordinate()).
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.woods)) {
             setLandModifier(LandMultipliers.WOODS_MULTIPLIER);
-            if (player.getRound() - 1 % RogueConstants.BACKSTAB_CRITICAL_CHARGE == 0) {
+            System.out.println(player.getRound());
+            if (player.getRound() % RogueConstants.BACKSTAB_CRITICAL_CHARGE == 0) {
                 setCritical(RogueConstants.BACKSTAB_CRITICAL_MULTIPLYER);
             }
         }
@@ -58,7 +59,6 @@ public class Backstab extends Ability {
         int damageGiven = Math.round((getBaseDamage()
                 + PyromancerConstants.FIREBLAST_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
                 * getRaceModifier() * getLandModifier() * getCritical());
-
         player.setRecievedDamage(damageGiven);
     }
 

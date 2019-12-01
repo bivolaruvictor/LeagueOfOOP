@@ -14,7 +14,7 @@ public class Loader {
     private final String mInputPath;
     private final String mOutputPath;
 
-    Loader(final String inputPath, final String outputPath) {
+    public Loader(final String inputPath, final String outputPath) {
         mInputPath = inputPath;
         mOutputPath = outputPath;
     }

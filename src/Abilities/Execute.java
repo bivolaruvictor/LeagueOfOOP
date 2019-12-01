@@ -16,6 +16,9 @@ public class Execute extends Ability {
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.land)) {
             setLandModifier(LandMultipliers.LAND_MULTIPLIER);
         }
+        player.setBruteDamage(Math.round((getBaseDamage()
+                + KnightConstants.EXECUTE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                *  getLandModifier()));
     }
 
     public int givenDamage(Player player) {

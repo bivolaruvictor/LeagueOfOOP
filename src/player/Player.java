@@ -231,9 +231,6 @@ public abstract class Player implements Visitable {
     }
 
     public void fightPlayer(Player player) {
-        if (player.getHp() <= 0) {
-            addKilledXp(player);
-        }
     }
 
     public void addKilledXp(Player player) {
@@ -259,7 +256,6 @@ public abstract class Player implements Visitable {
                     break;
             }
         }
-        setRound(getRound() + 1);
     }
 
     public void recieveDamage() {
@@ -278,11 +274,12 @@ public abstract class Player implements Visitable {
         levelUp();
     }
     public void levelUp() {
-        while (getXp() >= PlayerConstants.XP_LEVEL_UP_BASE + getLevel() * PlayerConstants.XP_LEVEL_UP_MULTIPLYER) {
-            setXp(getXp() - PlayerConstants.XP_LEVEL_UP_BASE + getLevel() * PlayerConstants.XP_LEVEL_UP_MULTIPLYER);
-            setLevel(getLevel() + 1);
+        int oldLevel = getLevel();
+        int newLevel = (getXp() - PlayerConstants.XP_LEVEL_UP_BASE) / PlayerConstants.XP_LEVEL_UP_MULTIPLYER + 1;
+        if (newLevel != oldLevel) {
+            setLevel(newLevel);
+            setHp(getMaxHp());
         }
-        setHp(getMaxHp());
     }
 
     public String alive() {

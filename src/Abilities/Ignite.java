@@ -20,6 +20,9 @@ public class Ignite extends Ability {
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.volcanic)) {
             setLandModifier(LandMultipliers.VOLCANIC_MULTIPLIER);
         }
+        player.setBruteDamage(player.getBruteDamage() + Math.round((getBaseDamage()
+                + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel())
+                *  getLandModifier()));
     }
 
     public void interactWith(Knight player) {
@@ -44,8 +47,8 @@ public class Ignite extends Ability {
 
         player.setRecievedDamage(damageGiven);
 
-        int secondaryDamage = PyromancerConstants.IGNITE_SECONDARY_STARTING_DAMAGE
-                + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel();
+        int secondaryDamage = Math.round((PyromancerConstants.IGNITE_SECONDARY_STARTING_DAMAGE
+                + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL* getCasterLevel()) * getLandModifier() * getRaceModifier());
 
         player.setOvertimeDamage(secondaryDamage);
         player.setOvertimeRounds(PyromancerConstants.ROUNDS_OF_IGNITE_SECONDARY_DAMAGE);
@@ -59,8 +62,8 @@ public class Ignite extends Ability {
 
         player.setRecievedDamage(damageGiven);
 
-        int secondaryDamage = PyromancerConstants.IGNITE_SECONDARY_STARTING_DAMAGE
-                + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel();
+        int secondaryDamage = Math.round((PyromancerConstants.IGNITE_SECONDARY_STARTING_DAMAGE
+                + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL* getCasterLevel()) * getLandModifier() * getRaceModifier());
 
         player.setOvertimeDamage(secondaryDamage);
         player.setOvertimeRounds(PyromancerConstants.ROUNDS_OF_IGNITE_SECONDARY_DAMAGE);
@@ -74,8 +77,8 @@ public class Ignite extends Ability {
 
         player.setRecievedDamage(damageGiven);
 
-        int secondaryDamage = PyromancerConstants.IGNITE_SECONDARY_STARTING_DAMAGE
-                + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL * getCasterLevel();
+        int secondaryDamage = Math.round((PyromancerConstants.IGNITE_SECONDARY_STARTING_DAMAGE
+                + PyromancerConstants.IGNITE_DAMAGE_ADDED_PER_LEVEL* getCasterLevel()) * getLandModifier() * getRaceModifier());
 
         player.setOvertimeDamage(secondaryDamage);
         player.setOvertimeRounds(PyromancerConstants.ROUNDS_OF_IGNITE_SECONDARY_DAMAGE);

@@ -45,5 +45,6 @@ public class Rogue extends Player {
         player.recieveDamage();
         this.setBruteDamage(player.getBruteDamage());
         super.fightPlayer(player);
+        System.out.println();
     }
 }

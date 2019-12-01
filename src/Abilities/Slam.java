@@ -18,6 +18,8 @@ public class Slam extends Ability {
                 get(player.getyCoordinate()).getTerrainType().equals(TerrainType.land)) {
             setLandModifier(LandMultipliers.LAND_MULTIPLIER);
         }
+        player.setBruteDamage(player.getBruteDamage() + Math.round((getBaseDamage()
+                + KnightConstants.SLAM_DAMAGE_ADDED_PER_LEVEL * getCasterLevel()) * getLandModifier()));
     }
 
     public void interactWith(Knight player) {
