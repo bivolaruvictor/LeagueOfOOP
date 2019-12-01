@@ -48,9 +48,6 @@ public final class Main {
                         if (input.getPlayers().get(i).fight(input.getPlayers().get(j))
                                 && input.getPlayers().get(i).isAlive()
                                 && input.getPlayers().get(j).isAlive()) {
-                            System.out.println(input.getPlayers().get(i).getType().toString()
-                                    + " FIGHTS " + input.getPlayers().get(j).getType().toString()
-                            + " on " + input.getPlayers().get(i).getxCoordinate() + input.getPlayers().get(i).getyCoordinate());
                             if (input.getPlayers().get(i).getType().equals(PlayerType.wizard)
                                     && !input.getPlayers().get(j).getType().equals(PlayerType.wizard)) {
                                 input.getPlayers().get(j).fightPlayer(input.getPlayers().get(i));
@@ -77,8 +74,7 @@ public final class Main {
                                 + player.getxCoordinate() + " "
                                 + player.getyCoordinate());
                     } else {
-                        fs.writeWord(player.typeToString() + " " + "dead " + player.getxCoordinate() + " "
-                                + player.getyCoordinate());
+                        fs.writeWord(player.typeToString() + " " + "dead");
                     }
                     fs.writeNewLine();
                 }
