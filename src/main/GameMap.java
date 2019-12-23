@@ -14,7 +14,7 @@ public class GameMap {
         map = new ArrayList<ArrayList<Terrain>>();
     }
 
-    public GameMap(int numRows, int numColumns) {
+    public GameMap(final int numRows, final int numColumns) {
         this.numRows = numRows;
         this.numColumns = numColumns;
         map = new ArrayList<ArrayList<Terrain>>(numRows);
@@ -28,7 +28,7 @@ public class GameMap {
         return map;
     }
     /**/
-    public void addToMap(int row, Terrain column) {
+    public void addToMap(final int row, final Terrain column) {
         getMap().get(row).add(column);
     }
 
@@ -46,7 +46,7 @@ public class GameMap {
         return singleInstance;
     }
 
-    public static GameMap getInstance(int numRows, int numColumns) {
+    public static GameMap getInstance(final int numRows, final int numColumns) {
         if (singleInstance == null) {
             singleInstance = new GameMap(numRows, numColumns);
         }

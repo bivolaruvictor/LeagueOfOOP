@@ -21,11 +21,11 @@ public class Wizard extends Player {
                 + WizardConstants.WIZARD_HP_PER_LEVEL * getLevel();
     }
     /**/
-    public void accept(Visitor ability) {
+    public void accept(final Visitor ability) {
         ability.interactWith(this);
     }
     /**/
-    public void fightPlayer(Player player) {
+    public void fightPlayer(final Player player) {
         Drain drain = (Drain) getAbilityFactory().getAbilityType(AbilityType.drain, player);
         player.accept(drain);
         player.recieveDamage();

@@ -22,12 +22,12 @@ public class Knight extends Player {
                 + KnightConstants.KNIGHT_HP_PER_LEVEL * getLevel();
     }
     /**/
-    public void accept(Visitor ability) {
+    public void accept(final Visitor ability) {
         ability.interactWith(this);
     }
     /**/
     @Override
-    public void fightPlayer(Player player) {
+    public void fightPlayer(final Player player) {
         Execute execute = (Execute) getAbilityFactory().getAbilityType(AbilityType.execute, player);
         player.accept(execute);
         player.recieveDamage();

@@ -49,11 +49,11 @@ public abstract class Player implements Visitable {
         return abilityFactory;
     }
     /**/
-    public void setType(PlayerType type) {
+    public void setType(final PlayerType type) {
         this.type = type;
     }
     /**/
-    public void setHp(int hp) {
+    public void setHp(final int hp) {
         if (hp > 0) {
             this.hp = hp;
         } else {
@@ -62,48 +62,48 @@ public abstract class Player implements Visitable {
         }
     }
     /**/
-    public void setLevel(int level) {
+    public void setLevel(final int level) {
         this.level = level;
     }
     /**/
-    public void setXp(int xp) {
+    public void setXp(final int xp) {
         this.xp = xp;
     }
     /**/
-    public void setxCoordinate(int xCoordinate) {
+    public void setxCoordinate(final int xCoordinate) {
         this.xCoordinate = xCoordinate;
     }
     /**/
-    public void setyCoordinate(int yCoordinate) {
+    public void setyCoordinate(final int yCoordinate) {
         this.yCoordinate = yCoordinate;
     }
     /**/
-    public void setStartingPosition(int x, int y) {
+    public void setStartingPosition(final int x, final int y) {
         xCoordinate = x;
         yCoordinate = y;
     }
 
     /**/
-    public void setTerrainBonus(Float terrainBonus) {
+    public void setTerrainBonus(final Float terrainBonus) {
     }
     /**/
-    public void setRecievedDamage(int recievedDamage) {
+    public void setRecievedDamage(final int recievedDamage) {
         this.recievedDamage = recievedDamage;
     }
     /**/
-    public void setOvertimeRounds(int overtimeRounds) {
+    public void setOvertimeRounds(final int overtimeRounds) {
         this.overtimeRounds = overtimeRounds;
     }
     /**/
-    public void setOvertimeDamage(int overtimeDamage) {
+    public void setOvertimeDamage(final int overtimeDamage) {
         this.overtimeDamage = overtimeDamage;
     }
     /**/
-    public void setBlock(int block) {
+    public void setBlock(final int block) {
         this.block = block;
     }
     /**/
-    public void setRound(int round) {
+    public void setRound(final int round) {
         this.round = round;
     }
     /**/
@@ -115,7 +115,7 @@ public abstract class Player implements Visitable {
         isAlive = false;
     }
     /**/
-    public void setAlive(boolean alive) {
+    public void setAlive(final boolean alive) {
         isAlive = alive;
     }
     /**/
@@ -123,7 +123,7 @@ public abstract class Player implements Visitable {
         return raceBonus;
     }
     /**/
-    public void setRaceBonus(Float raceBonus) {
+    public void setRaceBonus(final Float raceBonus) {
         this.raceBonus = raceBonus;
     }
     /**/
@@ -131,11 +131,11 @@ public abstract class Player implements Visitable {
         return bruteDamage;
     }
     /**/
-    public void setBruteDamage(int bruteDamage) {
+    public void setBruteDamage(final int bruteDamage) {
         this.bruteDamage = bruteDamage;
     }
     /**/
-    public void addMove(Character movement) {
+    public void addMove(final Character movement) {
         getMoves().add(movement);
     }
     /**/
@@ -213,10 +213,10 @@ public abstract class Player implements Visitable {
         }
     }
     /**/
-    public void accept(Visitor ability) {
+    public void accept(final Visitor ability) {
     }
     /*Se poate bate cu un jucator doar daca au aceleasi coordonate*/
-    public boolean fight(Player player) {
+    public boolean fight(final Player player) {
         if (this.getxCoordinate() == player.getxCoordinate()
         && this.getyCoordinate() == player.getyCoordinate()) {
             return true;
@@ -226,7 +226,7 @@ public abstract class Player implements Visitable {
     /*Conditiile suplimentare sunt puse ca in cazul in care un jucator care nu este wizard
     * se intalneste cu un wizard sa atace el primul, pentru ca altfel wizard nu are la ce sa
     * dea deflect*/
-    public void simulateFight(Player attacked) {
+    public void simulateFight(final Player attacked) {
         if (this.fight(attacked) && this.isAlive() && attacked.isAlive()) {
             if (this.getType().equals(PlayerType.wizard)
                     && !attacked.getType().equals(PlayerType.wizard)) {
@@ -247,13 +247,13 @@ public abstract class Player implements Visitable {
         }
     }
     /**/
-    public void fightPlayer(Player player) {
+    public void fightPlayer(final Player player) {
         if (player.getHp() <= 0) {
             player.isDead();
         }
     }
     /*Calculez xp ul ce trebuie dat invingatorului, si i-l dau*/
-    public void addKilledXp(Player player) {
+    public void addKilledXp(final Player player) {
         addXp(Math.max(0, (PlayerConstants.XP_WINNING_BASE
                 - (this.getLevel() - player.getLevel()) * PlayerConstants.XP_WINNING_MULTIPLYER)));
     }
@@ -296,7 +296,7 @@ public abstract class Player implements Visitable {
         }
     }
     /**/
-    public void addXp(int xP) {
+    public void addXp(final int xP) {
         setXp(getXp() + xP);
         levelUp();
     }

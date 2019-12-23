@@ -2,7 +2,7 @@ package player;
 
 public class PlayerFactory {
     /**/
-    public Player getPlayerType(PlayerType playerType) {
+    public Player getPlayerType(final PlayerType playerType) {
         if (playerType == null) {
             return null;
         }

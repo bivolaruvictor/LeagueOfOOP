@@ -21,11 +21,11 @@ public class Pyromancer extends Player {
                 + PyromancerConstants.PYROMANCER_HP_PER_LEVEL * getLevel();
     }
     /**/
-    public void accept(Visitor ability) {
+    public void accept(final Visitor ability) {
         ability.interactWith(this);
     }
     /**/
-    public void fightPlayer(Player player) {
+    public void fightPlayer(final Player player) {
         Fireblast fireblast = (Fireblast) getAbilityFactory()
                 .getAbilityType(AbilityType.fireblast, player);
         player.accept(fireblast);

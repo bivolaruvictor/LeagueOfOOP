@@ -1,6 +1,9 @@
 package constants;
 
-public class RaceMultiplier {
+public final class RaceMultiplier {
+    private RaceMultiplier() {
+    }
+
     public static final float PYROMANCER_ON_ROGUE_FIREBLAST = 0.8f;
     public static final float PYROMANCER_ON_KNIGHT_FIREBLAST = 1.2f;
     public static final float PYROMANCER_ON_PYROMANCER_FIREBLAST = 0.9f;

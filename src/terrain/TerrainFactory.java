@@ -2,7 +2,7 @@ package terrain;
 
 public class TerrainFactory {
     /**/
-    public Terrain getTerrainType(TerrainType terrainType) {
+    public Terrain getTerrainType(final TerrainType terrainType) {
         if (terrainType == null) {
             return null;
         }

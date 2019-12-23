@@ -1,6 +1,9 @@
 package constants;
 
-public class WizardConstants {
+public final class WizardConstants {
+    private WizardConstants() {
+    }
+
     public static final int WIZARD_STARTING_HP = 400;
     public static final int WIZARD_HP_PER_LEVEL = 30;
 

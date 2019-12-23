@@ -1,6 +1,7 @@
 package constants;
 
-public class KnightConstants {
+public final class KnightConstants {
+    private KnightConstants() { }
     public static final int KNIGHT_STARTING_HP = 900;
     public static final int KNIGHT_HP_PER_LEVEL = 80;
 

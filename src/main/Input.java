@@ -13,7 +13,7 @@ public class Input {
         numberOfRounds = -1;
     }
 
-    public Input(List<Player> players, int numberOfRounds) {
+    public Input(final List<Player> players, final int numberOfRounds) {
         this.players = players;
         this.numberOfRounds = numberOfRounds;
     }

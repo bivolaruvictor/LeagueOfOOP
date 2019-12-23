@@ -22,12 +22,12 @@ public class Rogue extends Player {
                 + RogueConstants.ROGUE_HP_PER_LEVEL * getLevel();
     }
     /**/
-    public void accept(Visitor ability) {
+    public void accept(final Visitor ability) {
         ability.interactWith(this);
     }
     /**/
     @Override
-    public void fightPlayer(Player player) {
+    public void fightPlayer(final Player player) {
         Backstab backstab = (Backstab) getAbilityFactory()
                 .getAbilityType(AbilityType.backstab, player);
         player.accept(backstab);

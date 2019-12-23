@@ -3,7 +3,6 @@ package main;
 import java.io.IOException;
 import fileio.FileSystem;
 import player.Player;
-import player.PlayerType;
 
 public final class Main {
     private Main() {

@@ -1,6 +1,9 @@
 package constants;
 
-public class RogueConstants {
+public final class RogueConstants {
+    private RogueConstants() {
+    }
+
     public static final int ROGUE_STARTING_HP = 600;
     public static final int ROGUE_HP_PER_LEVEL = 40;
 

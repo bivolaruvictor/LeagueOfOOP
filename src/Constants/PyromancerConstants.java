@@ -1,6 +1,9 @@
 package constants;
 
-public class PyromancerConstants {
+public final class PyromancerConstants {
+    private PyromancerConstants() {
+    }
+
     public static final int PYROMANCER_STARTING_HP  = 500;
     public static final int PYROMANCER_HP_PER_LEVEL  = 50;
 
